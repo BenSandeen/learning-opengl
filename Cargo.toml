@@ -1,0 +1,11 @@
+[package]
+name = "learning-opengl"
+version = "0.1.0"
+authors = ["popa9"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sdl2 = { version = "0.33.0", features = ["bundled", "static-link"] }
+gl = "0.14.0"
