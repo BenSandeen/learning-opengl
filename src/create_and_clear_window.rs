@@ -1,7 +1,7 @@
 // No need to do `use sdl2` and `use gl` here, this file has access to that stuff
 
 pub fn create_and_clear_window() {
-        let sdl = sdl2::init().unwrap();  // Need to initialize the SDL2 library before doing anything else with it
+    let sdl = sdl2::init().unwrap();  // Need to initialize the SDL2 library before doing anything else with it
 
     // Get SDL2's video system handler
     let video_subsystem = sdl.video().unwrap();
