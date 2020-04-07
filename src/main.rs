@@ -71,7 +71,9 @@ fn main() {
          0.0,  0.5, 0.0
     ];
 
-    // Create a pointer to that will refer to the array that we can use to hand off to OpenGL
+    // Create a pointer to that will refer to the array that we can use to hand off to OpenGL.  Note that the way this
+    // works is that OpenGL creates this object behind the scenes and when we interact with OpenGL using this integer
+    // pointer, it knows that we're referring to the object we created here
     let mut vbo: gl::types::GLuint = 0;
     unsafe {
         // This tells OpenGL that we'll be using one buffer and gives it the pointer that we'll use to refer to the
@@ -79,7 +81,8 @@ fn main() {
         // overwrite memory that we don't want it to touch
         gl::GenBuffers(1, &mut vbo);
 
-        // Binds the `vbo` buffer object and lets OpenGL know that it's an array (vertex) buffer
+        // Binds the `vbo` buffer object and lets OpenGL know that it's an array (vertex) buffer.  Since OpenGL only has
+        // one `ARRAY_BUFFER`, whenever we do something with the array buffer, OpenGL knows that it involves `vbo`
         gl::BindBuffer(gl::ARRAY_BUFFER, vbo);
 
         // Actually send the data in the buffer
