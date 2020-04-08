@@ -64,11 +64,12 @@ fn main() {
     // Set our program to use our shaders
     shader_program.set_used();
 
-    // Now generate a simple vertex array for a triangle we'll render
+    // Now generate a simple vertex array for a triangle we'll render, and include the colors
     let vertices: Vec<f32> = vec![
-        -0.5, -0.5, 0.0,
-         0.5, -0.5, 0.0,
-         0.0,  0.5, 0.0
+        // positions        // colors
+        -0.5, -0.5, 0.0,    1.0, 0.0, 0.0,
+         0.5, -0.5, 0.0,    0.0, 1.0, 0.0,
+         0.0,  0.5, 0.0,    0.0, 0.0, 1.0
     ];
 
     // Create a pointer to that will refer to the array that we can use to hand off to OpenGL.  Note that the way this
@@ -119,15 +120,28 @@ fn main() {
         // need it for this step to work
         gl::BindBuffer(gl::ARRAY_BUFFER, vbo);
 
-        gl::EnableVertexAttribArray(0);  // this is "layout (location = 0)" in vertex shader
+        // Send over the positions to the vertex shader
+        gl::EnableVertexAttribArray(0);  // this is `layout (location = 0)` in vertex shader
 
         gl::VertexAttribPointer(
             0,  // index of the generic vertex attribute (correponds to the `layout(location = 0)` in the shaders)
             3,  // number of components per generic vertex attribute
             gl::FLOAT,  // data type
             gl::FALSE,  // normalized (int-to-float conversion)
-            (3 * std::mem::size_of::<f32>()) as gl::types::GLint,  // stride (byte offset between consecutive attributes)
+            (6 * std::mem::size_of::<f32>()) as gl::types::GLint,  // stride (byte offset between consecutive attributes)
             std::ptr::null()  // offset of the first component
+        );
+
+        // Now send over the colors to the vertex shader
+        gl::EnableVertexAttribArray(1);  // this is `layout (location = 1)` in vertex shader
+
+        gl::VertexAttribPointer(
+            1,  // index of the generic vertex attribute (correponds to the `layout(location = 1)` in the shaders)
+            3,  // number of components per generic vertex attribute
+            gl::FLOAT,  // data type
+            gl::FALSE,  // normalized (int-to-float conversion)
+            (6 * std::mem::size_of::<f32>()) as gl::types::GLint,  // stride (byte offset between consecutive attributes)
+            (3 * std::mem::size_of::<f32>()) as *const gl::types::GLvoid  // offset of initial element of the array
         );
 
         // Unbind both VAO and VBO, just like we did previously
