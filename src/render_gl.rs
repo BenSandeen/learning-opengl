@@ -5,6 +5,7 @@ use std;
 use std::ffi::{CStr, CString};
 
 // Struct to hold the shader object, simply for convenience
+#[derive(Clone)]
 pub struct Shader {
     id: gl::types::GLuint,
 }
