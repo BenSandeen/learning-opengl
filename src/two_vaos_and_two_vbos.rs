@@ -1,4 +1,3 @@
-// extern crate sdl2;
 use sdl2;  // This handles all the windowing, audio, and mouse and keyboard interaction stuff
 use gl;
 use std::ffi::{CStr, CString};
@@ -7,7 +6,6 @@ use crate::render_gl;
 use crate::program;
 
 pub fn two_vaos_and_two_vbos() {
-    // Redo some stuff here to make sure I understand it
     let _sdl = sdl2::init().unwrap();
     let video_subsystem = _sdl.video().unwrap();
 
@@ -37,7 +35,6 @@ pub fn two_vaos_and_two_vbos() {
 
     let frag_shader = render_gl::Shader::from_frag_source(
         &CString::new(
-            // This macro effectively tells the compiler to compile the file's contents into this file as a string
             include_str!("two_vaos_and_two_vbos.frag")
         ).unwrap()
     ).unwrap();
@@ -104,7 +101,6 @@ pub fn two_vaos_and_two_vbos() {
 
         // Now send over the colors to the vertex shader
         gl::EnableVertexAttribArray(1);  // this is `layout (location = 1)` in vertex shader
-
         gl::VertexAttribPointer(
             1,  // index of the generic vertex attribute (corresponds to the `layout(location = 1)` in the shaders)
             3,  // number of components per generic vertex attribute
@@ -126,7 +122,6 @@ pub fn two_vaos_and_two_vbos() {
         gl::GenVertexArrays(1, &mut vao_2);
 
         gl::BindVertexArray(vao_2);
-
         gl::BindBuffer(gl::ARRAY_BUFFER, vbo_2);
 
         // Actually send the data in the buffer
@@ -149,7 +144,6 @@ pub fn two_vaos_and_two_vbos() {
 
         // Now send over the colors to the vertex shader
         gl::EnableVertexAttribArray(1);  // this is `layout (location = 1)` in vertex shader
-
         gl::VertexAttribPointer(
             1,  // index of the generic vertex attribute (corresponds to the `layout(location = 1)` in the shaders)
             3,  // number of components per generic vertex attribute
@@ -235,7 +229,6 @@ pub fn one_yellow_triangle() {
 
     let frag_shader = render_gl::Shader::from_frag_source(
         &CString::new(
-            // This macro effectively tells the compiler to compile the file's contents into this file as a string
             include_str!("two_vaos_and_two_vbos.frag")
         ).unwrap()
     ).unwrap();
@@ -331,7 +324,6 @@ pub fn one_yellow_triangle() {
         gl::GenVertexArrays(1, &mut vao_2);
 
         gl::BindVertexArray(vao_2);
-
         gl::BindBuffer(gl::ARRAY_BUFFER, vbo_2);
 
         // Actually send the data in the buffer
@@ -354,7 +346,6 @@ pub fn one_yellow_triangle() {
 
         // Now send over the colors to the vertex shader
         gl::EnableVertexAttribArray(1);  // this is `layout (location = 1)` in vertex shader
-
         gl::VertexAttribPointer(
             1,  // index of the generic vertex attribute (corresponds to the `layout(location = 1)` in the shaders)
             3,  // number of components per generic vertex attribute

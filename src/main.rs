@@ -115,7 +115,8 @@ fn main() {
         gl::BindBuffer(gl::ARRAY_BUFFER, 0);
     }
 
-    // Now we must create a Vertex Array Object (VAO) to tell OpenGL how to interpret the data in `vertices`
+    // Now we must create a Vertex Array Object (VAO) to tell OpenGL how to interpret the data in `vertices`.  VAO is
+    // basically a wrapper around VBOs to facilitate easier descriptions of how to interact with a VBO
     let mut vao: gl::types::GLuint = 0;
     unsafe {
         gl::GenVertexArrays(1, &mut vao);
