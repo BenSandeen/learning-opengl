@@ -1,0 +1,13 @@
+[package]
+name = "gl"
+version = "0.1.0"
+authors = ["BenSandeen <12025856+BenSandeen@users.noreply.github.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gl = { path = "lib/gl" }
+
+[build-dependencies]
+gl_generator = "0.9.0"

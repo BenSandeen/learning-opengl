@@ -15,39 +15,46 @@ impl Shader {
         self.id
     }
 
-    // Since this does not have a `self` parameter, this is basically a static method (doesn't act on individual objects
-    // of the `Shader` type, but rather works only with the struct itself.  This is basically a constructor method
+    /// Since this does not have a `self` parameter, this is basically a static method (doesn't act on individual objects
+    /// of the `Shader` type, but rather works only with the struct itself.  This is basically a constructor method
+    #[allow(dead_code)]
     pub fn from_source(source: &CStr, shader_type: gl::types::GLenum) -> Result<Shader, String> {
         // The `?` does sort of the same thing as a match statement that checks for errors
         let id = shader_from_source(source, shader_type)?;
         Ok(Shader { id })
     }
 
+    #[allow(dead_code)]
     pub fn from_vert_source(source: &CStr) -> Result<Shader, String> {
         let id = shader_from_source(source, gl::VERTEX_SHADER)?;
         Ok(Shader { id })
     }
 
+    #[allow(dead_code)]
     pub fn from_frag_source(source: &CStr) -> Result<Shader, String> {
         let id = shader_from_source(source, gl::FRAGMENT_SHADER)?;
         Ok(Shader { id })
     }
 
+    #[allow(dead_code)]
     pub fn from_compute_source(source: &CStr) -> Result<Shader, String> {
         let id = shader_from_source(source, gl::COMPUTE_SHADER)?;
         Ok(Shader { id })
     }
 
+    #[allow(dead_code)]
     pub fn from_tess_control_source(source: &CStr) -> Result<Shader, String> {
         let id = shader_from_source(source, gl::TESS_CONTROL_SHADER)?;
         Ok(Shader { id })
     }
 
+    #[allow(dead_code)]
     pub fn from_tess_evaluation_source(source: &CStr) -> Result<Shader, String> {
         let id = shader_from_source(source, gl::TESS_EVALUATION_SHADER)?;
         Ok(Shader { id })
     }
 
+    #[allow(dead_code)]
     pub fn from_geometry_source(source: &CStr) -> Result<Shader, String> {
         let id = shader_from_source(source, gl::GEOMETRY_SHADER)?;
         Ok(Shader { id })
@@ -63,9 +70,10 @@ impl Drop for Shader {
     }
 }
 
-// This will parse a string that contains the shader code.  If it succeeds, then it'll return a shader ID, if it fails,
-// it'll return a string with an error message.  Note that we pass in a `CStr` because that's what the underlying
-// function that compiles the shader string expects to receive
+/// This will parse a string that contains the shader code.  If it succeeds, then it'll return a shader ID, if it fails,
+/// it'll return a string with an error message.  Note that we pass in a `CStr` because that's what the underlying
+/// function that compiles the shader string expects to receive
+#[allow(dead_code)]
 fn shader_from_source(source: &CStr, shader_type: gl::types::GLuint) -> Result<gl::types::GLuint, String> {
     // First, get the shader ID.  This basically creates an empty shader object that we will interact with when doing shader stuff
     let id = unsafe { gl::CreateShader(shader_type) };
@@ -110,6 +118,7 @@ fn shader_from_source(source: &CStr, shader_type: gl::types::GLuint) -> Result<g
     Ok(id)
 }
 
+#[allow(dead_code)]
 pub fn create_whitespace_cstring_with_len(len: usize) -> CString {
     // Then we allocate a vector to act as a buffer to hold the message
     let mut buffer: Vec<u8> = Vec::with_capacity(len + 1);

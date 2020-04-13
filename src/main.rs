@@ -1,12 +1,16 @@
 // extern crate sdl2;
 use sdl2;  // This handles all the windowing, audio, and mouse and keyboard interaction stuff
 use gl;
-use std::ffi::{CStr, CString};
+use std::ffi::CString;
+use resources::Resources;
+use std::path::Path;
+
 
 mod create_and_clear_window;
 mod render_gl;
 mod program;
 mod two_vaos_and_two_vbos;
+pub mod resources;
 
 fn main() {
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21,6 +25,8 @@ fn main() {
 
     two_vaos_and_two_vbos::two_vaos_and_two_vbos();
     two_vaos_and_two_vbos::one_yellow_triangle();
+    two_vaos_and_two_vbos::vertex_shader_coloring();
+    two_vaos_and_two_vbos::coloring_with_uniforms();
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //                                    Now, the new stuff                                      //
@@ -39,7 +45,7 @@ fn main() {
         .resizable()
         .opengl()
         .build().unwrap();
-    let gl_context = window.gl_create_context().unwrap();
+    let _gl_context = window.gl_create_context().unwrap();
     let _gl = gl::load_with(|s| video_subsystem.gl_get_proc_address(s) as *const std::os::raw::c_void);
 
     unsafe {

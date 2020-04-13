@@ -1,5 +1,6 @@
 // No need to do `use sdl2` and `use gl` here, this file has access to that stuff
 
+#[allow(dead_code)]
 pub fn create_and_clear_window() {
     let sdl = sdl2::init().unwrap();  // Need to initialize the SDL2 library before doing anything else with it
 
@@ -15,7 +16,7 @@ pub fn create_and_clear_window() {
         .unwrap();
 
     // Get the OpenGL context from the window for OpenGL to actually use and do things
-    let gl_context = window.gl_create_context().unwrap();
+    let _gl_context = window.gl_create_context().unwrap();
 
     // This initializes the gl library or something, so that we can now use it to do stuff on the window we've created
     let _gl = gl::load_with(|s| video_subsystem.gl_get_proc_address(s) as *const std::os::raw::c_void);

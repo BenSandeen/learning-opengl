@@ -5,6 +5,7 @@ pub struct Program {
 }
 
 impl Program {
+    #[allow(dead_code)]
     pub fn id(&self) -> gl::types::GLuint {
         self.id
     }
